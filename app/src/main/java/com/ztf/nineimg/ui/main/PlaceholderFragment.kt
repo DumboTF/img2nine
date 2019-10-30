@@ -115,8 +115,8 @@ class PlaceholderFragment : Fragment() {
             }
             python.getModule("Img2nine").callAttr("img_2_nine", photoPath, folderPath)
             handler.post {
-                btn.isClickable = true
-                btn.text = "大卸九块"
+//                btn.isClickable = true
+                btn.text = "存储位置：SD卡/Pictures/"
                 Toast.makeText(context, "切完了", Toast.LENGTH_LONG).show()
                 refreshGell()
             }
@@ -126,7 +126,7 @@ class PlaceholderFragment : Fragment() {
     private fun refreshGell() {
         // 其次把文件插入到系统图库
         val folderPath = SdCardTools.getRootPath() + "/Pictures/"
-        val file = File(photoPath);
+        val file = File(photoPath)
         val fileName = file.name
         val simpleName = fileName.split(".")[0]
         for (i in (1..9)) {
@@ -175,6 +175,8 @@ class PlaceholderFragment : Fragment() {
 
             photoPath = data!!.data?.let { context?.let { it1 -> GetPhotoFromAlbum.getRealPathFromUri(it1, it) } }!!
             imageView.setImageURI(Uri.parse(photoPath))
+            btn.isClickable = true
+            btn.text = "大卸九块"
 //            tvFilePath.text = photoPath
 
             //拍照
